@@ -1,0 +1,8 @@
+.table{
+  margin: 40px 0 0 0 ;
+  width: 100%;
+    display: grid;
+    grid-template-columns: 35% 60%;
+    place-content: center;
+    gap:1.2em
+}

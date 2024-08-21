@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of data">
+      <td>{{item.Id}}</td>
+      <td>#{{item.name}}</td>
+      <td>
+        <button class="btn-dark" (click)="deleteTag(item.Id)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

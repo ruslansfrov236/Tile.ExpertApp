@@ -1,0 +1,7 @@
+.tags-list{
+  width: 100%;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  flex-direction: column;
+}

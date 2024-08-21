@@ -1,0 +1,42 @@
+<nav class="navbar">
+  <a class="logo" routerLink="/">
+    <img src="/assets/00eaded4e457666f399e817e293759fe7abb23f2" alt="Logo">
+  </a>
+  <ul class="nav-menu">
+    <li class="nav-item"><a class="nav-link" routerLink="links"> <i class="fa-solid fa-link"></i> Ссылки</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink="contacts"><i class="fa-solid fa-user"></i> Контакты</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink="tags"><i class="fa-solid fa-hashtag"></i> Теги</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink="wishlist"> <i class="fa-regular fa-star"></i> Избранное</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink="visits"> <i class="fa-solid fa-clock-rotate-left"></i> Посещения </a></li>
+    <li class="nav-item">
+      <button type="button" (click)="searchButton()" class="btn-search">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+      <div class="search" [class.isSearchActive]="isActive"  *ngIf="isActive">
+        <form class="search-form">
+          <input type="search" class="searhc-control" #search/>
+          <button type="button" class="btn-search-orange" (click)="searchFilterButtton(search)">Найти</button>
+        </form>
+        <div class="search-body">
+          <div class="search-body-history" >
+            <p>Search History</p>
+          </div>
+          <div></div>
+        </div>
+      </div>
+    </li>
+    <li class="nav-item">
+      <button type="submit" class="btn-plus">
+        <i class="fa-solid fa-plus"></i>
+      </button>
+    </li>
+  </ul>
+
+  <ul class="nav-menu-bell">
+    <li>
+      <button class="btn-bell">
+        <i class="fa-regular fa-bell"></i>
+      </button>
+    </li>
+  </ul>
+</nav>
