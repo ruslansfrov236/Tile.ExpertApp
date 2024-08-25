@@ -1,14 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { NotFoundComponent } from './not-found.component';
+import { NOTFOUND } from 'dns';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [NotFoundComponent],
   imports: [
     CommonModule,
+
     RouterModule.forChild([
       {
         path:"" , component:NotFoundComponent

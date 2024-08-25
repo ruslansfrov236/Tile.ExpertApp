@@ -1,25 +1,35 @@
-import { Component } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
-import { ComponentsModule } from "./components/components.module";
-import { SharedModule } from "./shared/shared.module";
-
-import { CommonModule } from "@angular/common";
-import { BrowserAnimationsModule, NoopAnimationsModule } from "@angular/platform-browser/animations";
-import { BrowserModule } from "@angular/platform-browser";
-import { NoopAnimationDriver } from "@angular/animations/browser";
-
-
-
-
-
+import { Component, HostListener, OnInit, PLATFORM_ID, Inject, AfterViewInit } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
+import { ComponentsModule } from './components/components.module';
+import { SharedModule } from './shared/shared.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet,ComponentsModule ,SharedModule,  CommonModule ],
+  imports: [RouterOutlet, ComponentsModule, SharedModule, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']  // Corrected to styleUrls
 })
-export class AppComponent {
-  title = 'test';
+export class AppComponent implements  AfterViewInit {
+  title = "";
+  isActiveMobile: boolean = false;
+
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+
+
+
+  ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.widthMobile();
+    }
+  }
+
+  @HostListener('window:resize')
+  widthMobile(): void {
+    if (isPlatformBrowser(this.platformId)) {
+      this.isActiveMobile = window.innerWidth < 768;
+    }
+  }
 }

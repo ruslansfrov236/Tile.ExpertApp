@@ -15,9 +15,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent {
 
   @Input() data: CreateTags[] = [];
-  constructor(public _router:Router){
-    this.loadData();
-  }
+
   searchButton() {
     this.isActive = !this.isActive;
 
@@ -36,7 +34,7 @@ export class NavbarComponent {
   var _filter =  this.data.filter(a=>a.name.toLowerCase()==search.value.toLowerCase())
 
     if(_filter.toLocaleString()==""){
-     this._router.navigate(["**"]);
+
     }else{
       this.data;
     }

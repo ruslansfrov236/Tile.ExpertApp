@@ -1,0 +1,35 @@
+<nav class="navbar-mobile">
+   <div class="hamburger" [class.HamburgerClass]="hamburgerToggle" (click)="toggleNavbar()">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+   </div>
+   <ul class="nav-mobile-menu" >
+    <li ><button type="button" class="btn-mobile-plus"> <i class="fa-solid fa-plus"></i> </button></li>
+    <li><a  routerLink="visits" class="nav-mobile-link-rotate"><i class="fa-solid fa-clock-rotate-left"></i></a></li>
+
+    <li><button type="button" (click)="searchMobile()" class="btn-mobile-glass">  <i class="fa-solid fa-magnifying-glass"></i> </button>
+
+    </li>
+
+   <li><button type="button" class="btn-mobile-glass">  <i class="fa-regular fa-bell"></i></button></li>
+   </ul>
+
+</nav>
+
+
+
+  <ul class="response-navbar-menu"  [class.NavbarClass]="navbarToggle">
+    <li>sss</li>
+  </ul>
+
+
+
+  <div class="search-mobile" [class.isMobileSearchClass]="isSearchMobile" >
+     <input type="search" class="form-mobile-control">
+
+     <div class="search-mobile-body">
+
+     </div>
+  </div>
+
