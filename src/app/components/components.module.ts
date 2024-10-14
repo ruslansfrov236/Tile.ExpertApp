@@ -8,6 +8,7 @@ import { VisitsModule } from './visits/visits.module';
 import { WishlistModule } from './wishlist/wishlist.module';
 import { TagsModule } from './tags/tags.module';
 import { ContactsModule } from './contacts/contacts.module';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -16,7 +17,8 @@ import { ContactsModule } from './contacts/contacts.module';
 @NgModule({
   declarations: [],
   imports: [
-
+  
+    RouterModule,
     CommonModule,
     VisitsModule,
     LinksModule,
@@ -26,8 +28,6 @@ import { ContactsModule } from './contacts/contacts.module';
     RouterModule,
     RouterLink
   ],
-  exports:[
-
-  ]
+  
 })
 export class ComponentsModule { }

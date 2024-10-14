@@ -1,6 +1,6 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { ListComponent } from './list/list.component';
-import { CreateTags } from '../../entities/create-tags';
+import { CreateTags } from '../../entities/tags/create-tags';
 
 @Component({
   selector: 'app-tags',
@@ -12,14 +12,31 @@ import { CreateTags } from '../../entities/create-tags';
 export class TagsComponent  {
   @ViewChild(ListComponent) listComponent: ListComponent;
 
+ showEdit:boolean=false;
 
+toggleCreate(){
+  this.showEdit=false
+}
+toggleEdit(tagId: string): void {
+ 
+  this.showEdit = true;
+}
 
  createTags(createTags:CreateTags){
 
   this.listComponent.loadData();
  }
- tagDeleted(id:number){
+ tagDeleted( id:string){
+
 
   this.listComponent.loadData();
+  
  }
+ onToggleEdit(tagId: string): void {
+  this.toggleEdit(tagId);
+}
+
+onToggleCreate(): void {
+  this.toggleCreate();
+}
 }

@@ -1,0 +1,5 @@
+<form class="tags-edit" (ngSubmit)="edit(titleInput )">
+   
+    <input type="text" #titleInput [(ngModel)]="data.title" value="{{data.title}}" class="form-control" required />
+    <button type="submit" class="btn-create" >Save</button>
+</form>

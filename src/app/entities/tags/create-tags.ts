@@ -1,4 +1,4 @@
 export class CreateTags {
- Id:number;
-  name:string;
+ id:string;
+  title:string;
 }

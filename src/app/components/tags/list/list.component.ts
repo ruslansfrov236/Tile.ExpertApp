@@ -1,38 +1,49 @@
-import { Component, Input, Output ,EventEmitter} from '@angular/core';
-import { CreateTags } from '../../../entities/create-tags';
-import { JitEvaluator } from '@angular/compiler';
+import { Component, Input, Output, EventEmitter, Inject, OnInit } from '@angular/core';
+import { CreateTags } from '../../../entities/tags/create-tags';
+import { TagService } from '../../../services/tags/tag.service';
 
 @Component({
   selector: 'app-list',
   standalone: false,
-
   templateUrl: './list.component.html',
-  styleUrl: './list.component.css'
+  styleUrls: ['./list.component.css']
 })
-export class ListComponent {
-
+export class ListComponent implements OnInit {
   @Input() data: CreateTags[] = [];
-  @Output() tagDeleted: EventEmitter<number> = new EventEmitter<number>();
+  @Output() tagDeleted: EventEmitter<string> = new EventEmitter<string>();
+  @Output() toggleEdit: EventEmitter<string> = new EventEmitter<string>();
+  @Output() toggleCreate: EventEmitter<void> = new EventEmitter<void>();
+  
+  constructor(@Inject(TagService) private tagsService: TagService) {}
 
-  constructor(){
-
-   this.loadData();
+  async ngOnInit(): Promise<void> {
+    await this.loadData();
   }
 
-  public loadData(): void {
-   const tagsDate = localStorage.getItem('CreateTags');
-   if (tagsDate) {
-     this.data = JSON.parse(tagsDate);
-   }
- }
+  async loadData(): Promise<void> {
+    try {
+      this.data = await this.tagsService.getAll();
+    } catch (error) {
+      console.error('Error loading tags', error);
+    }
+  }
 
- deleteTag(id: number): void {
+  editTag(id: string): void {
+   debugger
+    return this.toggleEdit.emit(id);
+  }
 
-  this.data = this.data.filter(a => a.Id !== id);
+  createTag(): void {
+    
+    this.toggleCreate.emit();
+  }
 
-    localStorage.setItem('CreateTags', JSON.stringify(this.data));
-
-
-    this.tagDeleted.emit(id);
-}
+  deleteTag(id: string): void {
+    this.tagsService.delete(id).then(() => {
+      this.tagDeleted.emit(id);
+      this.loadData(); 
+    }).catch(error => {
+      console.error('Error deleting tag:', error);
+    });
+  }
 }

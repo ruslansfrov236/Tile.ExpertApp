@@ -1,5 +1,8 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { CreateTags } from '../../../entities/create-tags';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { CreateTags } from '../../../entities/tags/create-tags';
+
+import { TagService } from '../../../services/tags/tag.service';
+import { Tags } from '../../../entities/tags/tags';
 
 @Component({
   selector: 'app-create',
@@ -8,25 +11,15 @@ import { CreateTags } from '../../../entities/create-tags';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent {
-  data: CreateTags[] = [];
+  
 
   @Output() createTags: EventEmitter<CreateTags> = new EventEmitter();
-
-  constructor() {
-    this.loadData();
-  }
-
-  private loadData(): void {
-    try {
-      const tagsData = localStorage.getItem('CreateTags');
-      if (tagsData) {
-        this.data = JSON.parse(tagsData);
-      }
-    } catch (error) {
-      console.error('Error loading tags from localStorage', error);
-      this.data = [];
-    }
-  }
+     
+    constructor( @Inject(TagService) public tagsService: TagService){
+    
+   }
+ 
+  
 
   createTagsValue(name: HTMLInputElement): void {
     const newTag = new CreateTags();
@@ -34,11 +27,10 @@ export class CreateComponent {
     if(name.value==""){
       alert("not found")
     }
-    newTag.Id = this.data.length ? Math.max(...this.data.map(tag => tag.Id)) + 1 : 1;
-    newTag.name = name.value;
+    
+    newTag.title = name.value;
 
-    this.data.push(newTag);
-    localStorage.setItem('CreateTags', JSON.stringify(this.data));
+     this.tagsService.create(newTag)
 
 
     try {

@@ -1,3 +1,5 @@
+
+
 <table>
   <thead>
     <tr>
@@ -8,10 +10,12 @@
   </thead>
   <tbody>
     <tr *ngFor="let item of data">
-      <td>{{item.Id}}</td>
-      <td>#{{item.name}}</td>
+      <td>{{item.id}}</td>
+      <td>#{{item.title}}</td>
       <td>
-        <button class="btn-dark" (click)="deleteTag(item.Id)">Delete</button>
+        <button class="btn-dark" (click)="deleteTag(item.id)">Delete</button>
+        <a class="btn-dark" routerLink="/tags/edit/{{item.id}}">Edit</a>
+       
       </td>
     </tr>
   </tbody>

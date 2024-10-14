@@ -1,8 +1,9 @@
 <div class="table">
   <div class="table-create">
-    <app-create (createTags)=createTags($event)></app-create>
+    <app-edit *ngIf="showEdit" (closeEdit)="toggleCreate()"></app-edit>
+    <app-create *ngIf="!showEdit" (createTags)="createTags($event)"></app-create>
   </div>
   <div class="table-list">
-    <app-list  (tagDeleted)=tagDeleted($event)></app-list>
+    <app-list (tagDeleted)="tagDeleted($event)" (toggleEdit)="onToggleEdit($event)" (toggleCreate)="onToggleCreate()"></app-list>
   </div>
 </div>

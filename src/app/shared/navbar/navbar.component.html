@@ -5,7 +5,7 @@
   <ul class="nav-menu">
     <li class="nav-item"><a class="nav-link" routerLink="links"> <i class="fa-solid fa-link"></i> Ссылки</a></li>
     <li class="nav-item"><a class="nav-link" routerLink="contacts"><i class="fa-solid fa-user"></i> Контакты</a></li>
-    <li class="nav-item"><a class="nav-link" routerLink="tags"><i class="fa-solid fa-hashtag"></i> Теги</a></li>
+    <li class="nav-item"><a class="nav-link" routerLink="/tags"><i class="fa-solid fa-hashtag"></i> Теги</a></li>
     <li class="nav-item"><a class="nav-link" routerLink="wishlist"> <i class="fa-regular fa-star"></i> Избранное</a></li>
     <li class="nav-item"><a class="nav-link" routerLink="visits"> <i class="fa-solid fa-clock-rotate-left"></i> Посещения </a></li>
     <li class="nav-item">
@@ -13,13 +13,16 @@
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
       <div class="search" [class.isSearchActive]="isActive"  *ngIf="isActive">
-        <form class="search-form">
-          <input type="search" class="searhc-control" #search/>
-          <button type="button" class="btn-search-orange" (click)="searchFilterButtton(search)">Найти</button>
-        </form>
+        <form class="search-form" method="get" >
+          <input type="search"   class="search-control" #search/>
+          <button type="button" (click)="onEnter(search)">Ok</button>
+       </form>
         <div class="search-body">
-          <div class="search-body-history" >
-            <p>Search History</p>
+          <div class="search-body-history"   >
+            <select multiple size="8">
+              <option class="form-option" *ngFor="let i of data">{{i.title}}</option>
+            </select>
+             
           </div>
           <div></div>
         </div>
